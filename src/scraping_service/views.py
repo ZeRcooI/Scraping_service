@@ -9,4 +9,4 @@ def home(request):
       'date': date,
       'name': name
     }
-    return render(request, 'home.html', _context)
+    return render(request, 'base.html', _context)
