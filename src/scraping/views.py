@@ -4,4 +4,4 @@ from scraping.models import Vacancy
 
 def home_view(request):
     queryset = Vacancy.objects.all()
-    return render(request, 'base.html', {'object_list': queryset})
+    return render(request, 'scraping/home.html', {'object_list': queryset})
