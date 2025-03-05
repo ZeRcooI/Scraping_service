@@ -26,7 +26,6 @@ class MyUserManager(BaseUserManager):
         return user
 
 
-
 class MyUser(AbstractBaseUser):
     email = models.EmailField(
         verbose_name='email address',
@@ -43,6 +42,10 @@ class MyUser(AbstractBaseUser):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+    class Meta:
+        verbose_name = 'Аккаунт'
+        verbose_name_plural = 'Доступные аккаунты'
 
     def __str__(self):
         return self.email
