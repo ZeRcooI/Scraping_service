@@ -61,7 +61,7 @@ def rabota(url):
 def gorodrabot(url):
     jobs = []
     errors = []
-    domain = 'https://moskva.gorodrabot.ru/'
+    # domain = 'https://moskva.gorodrabot.ru/'
     response = requests.get(url, headers=headers[randint(0, len(headers) - 1)])
     if response.status_code == 200:
         soup = Bs(response.content, 'html.parser')
@@ -76,7 +76,7 @@ def gorodrabot(url):
 
                 jobs.append({
                     'title': title.text,
-                    'url': domain + href,
+                    'url': href,
                     'description': content,
                     'company': company,
                 })
@@ -97,7 +97,7 @@ def gorodrabot(url):
 def superjob(url):
     jobs = []
     errors = []
-    domain = 'https://russia.superjob.ru/'
+    # domain = 'https://russia.superjob.ru/'
     response = requests.get(url, headers=headers[randint(0, len(headers) - 1)])
     if response.status_code == 200:
         soup = Bs(response.content, 'html.parser')
@@ -116,7 +116,7 @@ def superjob(url):
 
                 jobs.append({
                     'title': title.text,
-                    'url': domain + href,
+                    'url': href,
                     'description': content,
                     'company': company_name,
                 })
