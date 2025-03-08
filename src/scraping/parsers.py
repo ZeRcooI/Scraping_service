@@ -22,7 +22,7 @@ headers = [
 def rabota(url):
     jobs = []
     errors = []
-    domain = 'https://nn.rabota.ru/'
+    domain = 'https://www.rabota.ru/'
     response = requests.get(url, headers=headers[randint(0, len(headers) - 1)])
     if response.status_code == 200:
         soup = Bs(response.content, 'html.parser')
@@ -34,9 +34,9 @@ def rabota(url):
                 href = title.a['href']
                 content = div.find('div', attrs={'class': 'vacancy-preview-card__short-description'}).text
                 company = 'No name'
-                logo = div.find('img')
-                if logo:
-                    company = logo['alt']
+                company_block = div.find('span', attrs={'class': 'vacancy-preview-card__company-name'})
+                if company_block and company_block.a:
+                    company = company_block.a.text.strip()
 
                 jobs.append({
                     'title': title.text,
@@ -134,9 +134,9 @@ def superjob(url):
     return jobs, errors
 
 
-if __name__ == '__main__':
-    url = 'https://russia.superjob.ru/vacancy/search/?keywords=Python'
-    jobs, errors = superjob(url)
-    h = codecs.open('rabota.txt', 'w', 'utf-8')
-    h.write(str(jobs))
-    h.close()
+# if __name__ == '__main__':
+#     url = 'https://russia.superjob.ru/vacancy/search/?keywords=Python'
+#     jobs, errors = superjob(url)
+#     h = codecs.open('rabota.txt', 'w', 'utf-8')
+#     h.write(str(jobs))
+#     h.close()
