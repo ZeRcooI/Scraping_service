@@ -11,7 +11,7 @@ os.environ["DJANGO_SETTINGS_MODULE"] = "scraping_service.settings"
 import django
 django.setup()
 from scraping.parsers import *
-from scraping.models import Vacancy, City, Language
+from scraping.models import Vacancy, City, Language, Error
 
 
 parsers = (
@@ -37,6 +37,9 @@ for job in jobs:
         v.save()
     except DatabaseError:
         pass
+
+if errors:
+    er = Error(data=errors).save()
 
 
 # h = codecs.open('work.txt', 'w', 'utf-8')
