@@ -1,17 +1,29 @@
 import requests
 import codecs
 from bs4 import BeautifulSoup as Bs
+from random import randint
 
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:5.0) Gecko/20100101 Firefox/5.0',
-           "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-}
+
+__all__ = ('rabota', 'gorodrabot', 'superjob')
+
+
+headers = [
+    {'User-Agent': 'Mozilla/5.0 (Windows NT 5.1; rv:47.0) Gecko/20100101 Firefox/47.0',
+     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'},
+
+    {'User-Agent': 'Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/49.0.2623.112 Safari/537.36',
+     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'},
+
+    {'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; rv:53.0) Gecko/20100101 Firefox/53.0',
+     'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'}
+]
 
 
 def rabota(url):
     jobs = []
     errors = []
     domain = 'https://nn.rabota.ru/'
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers[randint(0, len(headers) - 1)])
     if response.status_code == 200:
         soup = Bs(response.content, 'html.parser')
         main_div = soup.find('div', class_='infinity-scroll')
@@ -50,7 +62,7 @@ def gorodrabot(url):
     jobs = []
     errors = []
     domain = 'https://moskva.gorodrabot.ru/'
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers[randint(0, len(headers) - 1)])
     if response.status_code == 200:
         soup = Bs(response.content, 'html.parser')
         main_div = soup.find('div', class_='result-list')
@@ -86,7 +98,7 @@ def superjob(url):
     jobs = []
     errors = []
     domain = 'https://russia.superjob.ru/'
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers[randint(0, len(headers) - 1)])
     if response.status_code == 200:
         soup = Bs(response.content, 'html.parser')
         main_div = soup.find('div', class_='MokF1')
