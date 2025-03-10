@@ -20,7 +20,7 @@ class UserLoginForm(forms.Form):
                 raise forms.ValidationError('Такого пользователя нет!')
 
             if not check_password(password, queryset[0].password):
-                raise
+                raise forms.ValidationError('Пароль не верный!')
 
             user = authenticate(email=email, password=password)
             if not user:
@@ -29,9 +29,9 @@ class UserLoginForm(forms.Form):
 
 
 class UserRegistrationForm(forms.ModelForm):
-    email = forms.EmailField(label='Введите email: ', widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(label='Введите пароль: ', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
-    password2 = forms.CharField(label='Введите пароль повторно: ',
+    email = forms.EmailField(label='Введите email', widget=forms.EmailInput(attrs={'class': 'form-control'}))
+    password = forms.CharField(label='Введите пароль', widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    password2 = forms.CharField(label='Введите пароль повторно',
                                 widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     class Meta:
@@ -39,7 +39,7 @@ class UserRegistrationForm(forms.ModelForm):
         fields = ('email',)
 
     def clean_password2(self):
-        data = self.cleaned_data.get('password')
+        data = self.cleaned_data
         if data['password'] != data['password2']:
             raise forms.ValidationError('Пароли не совпадают!')
         return data['password2']
