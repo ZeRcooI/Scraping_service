@@ -4,11 +4,12 @@
 
 {% block content %}
     <div class="row">
-        <div class="col"><h2 class="text-center mt-3 mb-3">Сервис по сбору и рассылке вакансии</h2></div>
+        <div class="col"><h2 class="text-center mt-3 mb-3">Сервис по сбору и рассылке вакансий</h2></div>
     </div>
     <div class="row">
         <div class="col-md-8 mx-auto">
-            <h4>Для просмотра доступных вакансий, заполните форму по одному из полей (либо город, либо язык
+            <h4 class="text-center mt-3 mb-3">Для просмотра доступных вакансий, заполните форму по одному из полей (либо
+                город, либо язык
                 программирования)</h4>
             <form method="get" action="{% url 'list' %}">
                 <div class="form-group">
