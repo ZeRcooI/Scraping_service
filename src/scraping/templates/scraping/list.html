@@ -15,6 +15,31 @@
         {% empty %}
         <h3 class="text-center mt-3 mb-3">К сожалению по вашему запросу, ничего не найдено</h3>
     {% endfor %}
+    
+    {% if object_list %}
+        <div class="row">
+            <div class="col">
+               <div class="pagination">
+                   <span class="step-links">
+                       {% if object_list.has_previous %}
+                           <a href="?page=1">&laquo; first</a>
+                           <a href="?page={{ object_list.previous_page_number }}">previous</a>
+                       {% endif %}
+
+                       <span class="current">
+                           Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+                       </span>
+
+
+                       {% if object_list.has_next %}
+                           <a href="?page={{ object_list.next_page_number }}">next</a>
+                           <a href="?page={{ object_list.paginator.num_pages }}">last &raquo;</a>
+                       {% endif %}
+                   </span>
+               </div>
+            </div>
+        </div>
+    {% endif %}
 
     <div class="row">
         <div class="col-md-6 mx-auto">
@@ -26,6 +51,4 @@
             </form>
         </div>
     </div>
-
-
 {% endblock %}
