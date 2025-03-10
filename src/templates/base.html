@@ -21,11 +21,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">О проекте</a>
                     </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:logout' %}">Выйти</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'accounts:login' %}">Войти</a>
+                        </li>
+                    {% endif %}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">ZeRcool</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Beta</a>
+                        <a class="nav-link disabled" aria-disabled="true">Автор: ZeRcool</a>
                     </li>
                 </ul>
             </div>
