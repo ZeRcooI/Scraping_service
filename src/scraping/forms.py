@@ -1,5 +1,5 @@
 from django import forms
-from scraping.models import City, Language
+from .models import City, Language
 
 
 class FindForm(forms.Form):

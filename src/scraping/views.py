@@ -1,8 +1,8 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
 
-from scraping.forms import FindForm
-from scraping.models import Vacancy
+from .forms import FindForm
+from .models import Vacancy
 
 
 def home_view(request):

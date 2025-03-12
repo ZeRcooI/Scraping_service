@@ -3,12 +3,12 @@ from django.contrib import admin
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
-from accounts.models import MyUser
+from .models import MyUser
 
 
 class UserCreationForm(forms.ModelForm):
-    password1 = forms.CharField(label='Password' ,widget=forms.PasswordInput())
-    password2 = forms.CharField(label='Confirm Password',widget=forms.PasswordInput())
+    password1 = forms.CharField(label='Password', widget=forms.PasswordInput())
+    password2 = forms.CharField(label='Confirm Password', widget=forms.PasswordInput())
 
     class Meta:
         model = MyUser
@@ -30,7 +30,6 @@ class UserCreationForm(forms.ModelForm):
 
 
 class UserChangeForm(forms.ModelForm):
-
     password = ReadOnlyPasswordHashField()
 
     class Meta:
