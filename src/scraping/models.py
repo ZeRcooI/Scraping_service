@@ -1,7 +1,7 @@
 from django.db import models
 import jsonfield
 
-from scraping.utils import from_cyrillic_to_eng
+from .utils import from_cyrillic_to_eng
 
 def default_urls():
     return {"rabota": "", "gorodrabot": "", "superjob": "", }
