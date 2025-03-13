@@ -3,6 +3,7 @@ import jsonfield
 
 from .utils import from_cyrillic_to_eng
 
+
 def default_urls():
     return {"rabota": "", "gorodrabot": "", "superjob": "", }
 
@@ -12,8 +13,8 @@ class City(models.Model):
     slug = models.CharField(max_length=50, blank=True, unique=True)
 
     class Meta:
-        verbose_name='Название населенного пункта'
-        verbose_name_plural='Название населенных пунктов'
+        verbose_name = 'Название населенного пункта'
+        verbose_name_plural = 'Название населенных пунктов'
 
     def __str__(self):
         return self.name
@@ -22,6 +23,7 @@ class City(models.Model):
         if not self.slug:
             self.slug = from_cyrillic_to_eng(str(self.name))
         super().save(*args, **kwargs)
+
 
 class Language(models.Model):
     name = models.CharField(max_length=50, verbose_name='Язык программирования', unique=True)
@@ -38,6 +40,7 @@ class Language(models.Model):
         if not self.slug:
             self.slug = from_cyrillic_to_eng(str(self.name))
         super().save(*args, **kwargs)
+
 
 class Vacancy(models.Model):
     url = models.URLField(unique=True)
@@ -60,6 +63,9 @@ class Vacancy(models.Model):
 class Error(models.Model):
     timestamp = models.DateField(auto_now_add=True)
     data = jsonfield.JSONField()
+
+    def __str__(self):
+        return str(self.timestamp)
 
 
 class Url(models.Model):
