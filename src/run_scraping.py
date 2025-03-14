@@ -80,7 +80,7 @@ for job in jobs:
         pass
 
 if errors:
-    er = Error(data=errors).save()
+    er = Error(data=f'errors:{errors}').save()
 
 # h = codecs.open('work.txt', 'w', 'utf-8')
 # h.write(str(jobs))
